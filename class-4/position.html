@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Position</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        img{
+            width:250px;
+            height:250px;
+        }
+        .container{
+            border:2px solid black;
+            /* position:relative; */
+            height:1500px;
+        }
+        .image2{
+            position:relative;
+            top:50px;
+            left:50px;
+        }
+        .image3{
+            position: sticky;
+            right:50px;
+            bottom:20px;
+        }
+        .image4{
+            position:sticky;
+            top:50px;
+        }
+        .container2{
+            height:1500px;
+            background-color: lightgoldenrodyellow;
+        }
+        .sticky-header{
+            background-color:#333;
+            color:#fff;
+            padding:10px;
+            font-size:20px;
+            position:sticky;
+            top:10px;
+        }
+        .filler-content{
+            height:1500px;
+            background-color: #f1f1f1;
+            padding-top:20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="image1"src="./poster1.jpeg"> 
+        <img class="image2"src="./poster2.jpeg"> 
+        <img class="image3"src="./poster3.jpeg"> 
+        <img class="image4"src="./poster4.jpeg"> 
+    </div>
+    <div class="container2">
+        <h2 class="sticky-header">i am a sticky header</h2>
+        <p>scroll down to see the header stick to the top</p>
+        <div class="filler-content"> Filler content</div>
+    </div>
+    
+</body>
+</html>
