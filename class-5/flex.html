@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex</title>
+    <style>
+      .container {
+        background-color: tomato;
+        border: 2px solid black;
+        height: 300px;
+        /* width:500px; */
+        /* width:auto; */
+        display: flex;
+        /* flex-direction: column-reverse; */
+        justify-content: space-between;
+        /* align-items:baseline; */
+        /* align-items: stretch; */
+        /* flex-wrap: wrap; */
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .box {
+        height: 200px;
+        width: 200px;
+        /* min-width:100px; */
+        background-color: dodgerblue;
+        margin: 10px;
+        text-decoration: underline;
+        /* border-bottom: 1px solid black; */
+      }
+      .box1 {
+        order: 4;
+        /* flex-grow: 4; */
+        flex-shrink: 4;
+      }
+      .box2 {
+        order: 1;
+        flex-shrink: 3;
+      }
+      .box3 {
+        order: 2;
+        /* flex-grow:3; */
+        flex-shrink: 3;
+      }
+      .box4 {
+        order: 3;
+        flex-shrink: 3;
+      }
+
+      @media only screen and (max-width: 600px) { 
+        body {
+          font-size: 14px;
+          background-color: lightcoral;
+        }
+      }
+
+      @media only screen and (min-width:601px) and (max-width:900px){
+         body{
+            font-size:18px;
+            background-color:lightblue;
+         }
+      }
+
+      @media only screen and (min-width:901px){
+         body{
+            font-size:20px;
+            background-color:lightgreen;
+         }
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box box1" style="font-size: 16px">1</div>
+      <div class="box box2" style="font-size: 32px">2</div>
+      <div class="box box3" style="font-size: 48px">3</div>
+      <div class="box box4" style="font-size: 22px">4</div>
+    </div>
+  </body>
+</html>
