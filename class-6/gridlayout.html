@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            font-size:20px;
+            height:100vh;
+            display: grid;
+            /* grid-template-columns: repeat(4,1fr); */
+            grid-template-areas: 
+            "header header header header"
+            "nav content sidebar sidebar2"
+            "nav footer footer footer"
+            ;
+            grid-template-columns:1fr 4fr 1fr 1fr;
+            grid-template-rows: 90px 1fr 70px;
+        }
+        header, main, nav, aside, footer{
+            padding:20px;
+            border:1px solid skyblue;
+            background-color: tomato;
+            color:white;
+        }
+        header{
+            grid-area:header
+        }
+        nav{
+            grid-area:nav;
+        }
+        main{
+            grid-area:content;
+        }
+        aside{
+            grid-area:sidebar;
+        }
+        .sidebar2{
+            grid-area:sidebar2;
+        }
+        footer{
+            grid-area:footer;
+        }
+    </style>
+</head>
+<body>
+    <header>header</header>
+    <main>COntent</main>
+    <nav>Navigation Bar</nav>
+    <aside>Sidebar</aside>
+    <aside class="sidebar2">Sidebar2</aside>
+    <footer>Footer</footer>
+    
+</body>
+</html>
