@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inheritance</title>
+    <style>
+        body{
+            font-family:"Arial";
+        }
+        p{
+            font-family:"Courier New";
+            margin:20px;
+        }
+        p.special{
+            font-family:inherit;
+        }
+        a{
+            color:red;
+            border:2px solid blue;
+        }
+        .default-color{
+            color:initial;
+        }
+        .no-specific-margin{
+            margin:unset;
+            font-family: unset;
+        }
+    </style>
+</head>
+<body>
+    hello world
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, veniam!</p>
+    <p class="special">Lorem ipsum dolor sit amet.</p>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi accusamus cupiditate optio reprehenderit sequi unde quibusdam earum ut eveniet aperiam.</p>
+    <a href="#">This link is red</a>
+    <a href="#" class="default-color">This link is red</a>
+    <p>this para has 20px margin</p>
+    <p class="no-specific-margin">this para has an unset margin</p>
+    
+</body>
+</html>
