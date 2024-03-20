@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="myDiv" class="content visible"> Hello World !</div>
+    <script>
+        const divElem = document.getElementById('myDiv');
+        // add a new class
+        divElem.classList.add('highlight');
+        // remove a class
+        divElem.classList.remove('visible');
+        // check if a class is present in the element
+        if(divElem.classList.contains('content')){
+            console.log('the dic has a content class');
+        }else {
+            console.log('the div does not have a content class');
+        }
+    </script>
+</body>
+</html>

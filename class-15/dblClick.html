@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang = "en">
+ <head>
+   <meta charset = "UTF - 8" />
+   <meta http - equiv = "X - UA - Compatible" content = "IE = edge" />
+   <meta name = "viewport" content = "width = device - width, initial - scale = 1.0" />
+   <title>Document</title>
+   <style>
+     * {
+       box-sizing: border-box;
+     }
+
+
+     body {
+       display: flex;
+       flex-wrap: wrap;
+       justify-content: space-around;
+       padding-top: 5rem;
+     }
+
+
+     .blue {
+       background-color: blue;
+       box-shadow: 0px 0px 6px 5px;
+     }
+
+
+     .green {
+       background-color: green;
+       box-shadow: 0px 0px 6px 5px;
+     }
+
+
+     .red {
+       background-color: red;
+       box-shadow: 0px 0px 6px 5px;
+     }
+
+
+     .card {
+       border: 1px solid;
+       height: 10rem;
+       width: 10rem;
+       margin: 2rem;
+     }
+   </style>
+ </head>
+
+
+ <body>
+   <div class = "card" data-color = "blue"></div> 
+   <div class = "card" data-color = "red"></div>
+   <div class = "card" data-color = "blue"></div>
+   <div class = "card" data-color = "red"></div>
+   <div class = "card" data-color = "red"></div>
+   <div class = "card" data-color = "blue"></div>
+   <div class = "card" data-color = "green"></div>
+   <div class = "card" data-color = "blue"></div>
+   <div class = "card" data-color = "green"></div>
+   <div class = "card" data-color = "blue"></div>
+   <script>
+       /**
+        * write a script to fetch the data-color attribute of the card
+        * double clicking on a card, attaches the data-color attribute to the class list
+        * changes the data-color attribute to used
+        * 
+        * Approach
+        * 1. SELECTIONL: get list of cards 
+        * 2. ADDING EVENT LISTENER: then iterate over the cards and add a double click event listener
+        * 3.1 LOGIC: - get the data-color attribute and add it to the class list
+        * 3.2 LOGIC: change the data-color attribute to used
+        */
+       const cardsNodeList = document.querySelectorAll('.card');
+       console.log('cardsNodeList', cardsNodeList);
+
+      for(let i = 0; i < cardsNodeList.length; i++){
+       cardsNodeList[i].addEventListener('dblclick', function(e){
+        console.log("event:",e.target) // the card that was clicked
+        const card = e.target;
+        // get the attribute
+        const classToBeAttached = card.getAttribute('data-color'); 
+        console.log('classToBeAttached', classToBeAttached); 
+        card.classList.add(classToBeAttached);
+        // set the attribute
+        card.setAttribute('data-color', 'used');
+       }) 
+      } 
+   </script>
+   </body>
+   </html>
