@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin:0;
+            padding:0;
+        }
+      #hello {
+        height: 100px;
+        width: 150px;
+        position: absolute;
+        top: 20px;
+        left: 100px;
+      }
+    </style>
+</head>
+<body>
+   <!-- getBoundingClientRect() method returns the size of an 
+    element and its position relative to the viewport.  
+    this method returns a DOMRect object with the position
+    full form of this is Document Object Model Rectangle
+-->
+<div id="hello">Hello</div>
+<script>
+    const helloDiv = document.querySelector('#hello');
+    const results = helloDiv.getBoundingClientRect();
+    console.log(results);
+</script>
+</body>
+</html>
