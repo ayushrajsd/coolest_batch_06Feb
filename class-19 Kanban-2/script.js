@@ -29,6 +29,15 @@ removeBtn.addEventListener("click", function () {
   }
 });
 
+function handleRemoval(ticket) {
+  ticket.addEventListener("click", function () {
+    if (!removeTaskFlag) return;
+    else {
+      ticket.remove();
+    }
+  });
+}
+
 function createTicket(ticketColor, ticketTask, ticketId) {
   debugger;
   const ticketCont = document.createElement("div");
@@ -42,6 +51,7 @@ function createTicket(ticketColor, ticketTask, ticketId) {
     </div>
    `;
   mainCont.appendChild(ticketCont);
+  handleRemoval(ticketCont);
 }
 
 // ADD LISTENNER ON MODAL / POPUP
