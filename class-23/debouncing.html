@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width='device-width', initial-scale=1.0" />
+    <title>Debouncing</title>
+  </head>
+  <body>
+    <input id="input_field" type="text" />
+    <script>
+      const inputField = document.getElementById("input_field");
+
+      function processInput() {
+        // NETWORK REQUEST
+        console.log("Processing input ...");
+      }
+
+      const debouncedProcessInput = debounce(processInput, 300);
+
+      inputField.addEventListener("keydown", debouncedProcessInput);
+
+      function debounce(func, wait) {
+          let timeout; // if user issues event before timeout, clear the timeout and set a new one
+          return function executedFunction() {
+          const later = function () {
+            clearTimeout(timeout); // clear the timeout for d
+            func();
+          };
+          clearTimeout(timeout); // to clear the events a, b, c
+          timeout = setTimeout(later, wait);
+        };
+      }
+      // user issues a,b,c,d
+    </script>
+  </body>
+</html>
