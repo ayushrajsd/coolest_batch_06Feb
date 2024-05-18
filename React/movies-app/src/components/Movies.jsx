@@ -1,35 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Pagination from "./Pagination";
 import MovieCard from "./MovieCard";
+import axios from "axios";
 
 function Movies() {
-  const [movies, setMovies] = useState([
-    {
-      url: "https://fastly.picsum.photos/id/10/2500/1667.jpg?hmac=J04WWC_ebchx3WwzbM-Z4_KC_LeLBWr5LZMaAkWkF68",
-      title: "Movie 1",
-    },
-    {
-      url: "https://fastly.picsum.photos/id/10/2500/1667.jpg?hmac=J04WWC_ebchx3WwzbM-Z4_KC_LeLBWr5LZMaAkWkF68",
-      title: "Movie 2",
-    },
-    {
-      url: "https://fastly.picsum.photos/id/10/2500/1667.jpg?hmac=J04WWC_ebchx3WwzbM-Z4_KC_LeLBWr5LZMaAkWkF68",
-      title: "Movie 3",
-    },
-    {
-      url: "https://fastly.picsum.photos/id/10/2500/1667.jpg?hmac=J04WWC_ebchx3WwzbM-Z4_KC_LeLBWr5LZMaAkWkF68",
-      title: "Movie 4",
-    },
-    {
-      url: "https://fastly.picsum.photos/id/10/2500/1667.jpg?hmac=J04WWC_ebchx3WwzbM-Z4_KC_LeLBWr5LZMaAkWkF68",
-      title: "Movie 5",
-    },
-    {
-      url: "https://fastly.picsum.photos/id/10/2500/1667.jpg?hmac=J04WWC_ebchx3WwzbM-Z4_KC_LeLBWr5LZMaAkWkF68",
-      title: "Movie 6",
-    },
-  ]);
+  const [movies, setMovies] = useState([]);
   const [pageNo, setPageNo] = useState(1);
+  const [watchList, setWatchList] = useState([]);
+
+  const addToWatchList = (movieObj) => {
+    const updatedWatchList = [...watchList, movieObj]; // watchList.concat(movieObj)
+    setWatchList(updatedWatchList);
+  }
+
+  const removeFromWatchList = (movieObj)=>{
+    let filteredMovies = watchList.filter((movie)=> {
+      return movie.id != movieObj.id
+     }) // return all those movies whose id is not equal to movieObj.id
+    setWatchList(filteredMovies)
+  }
+  console.log("watchlist",watchList)
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/trending/movie/day?api_key=60d18d673bedf3d701f305ef746f6eef&language=en-US&page=${pageNo}`
+      )
+      .then((response) => {
+        console.log("Films", response.data.results);
+        setMovies(response.data.results);
+      });
+  }, [pageNo]);
 
   const handleNext = () => {
     setPageNo(pageNo + 1);
@@ -50,9 +51,7 @@ function Movies() {
       </div>
       <div className="flex justify-evenly flex-wrap gap-8">
         {movies.map((movieObj) => {
-          return (
-        <MovieCard movieObj={movieObj}/>
-          );
+          return <MovieCard movieObj={movieObj} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList}/>;
         })}
       </div>
       <Pagination
