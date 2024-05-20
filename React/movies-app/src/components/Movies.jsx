@@ -8,9 +8,17 @@ function Movies() {
   const [pageNo, setPageNo] = useState(1);
   const [watchList, setWatchList] = useState([]);
 
+ useEffect(()=>{
+  const moviesFromLocalStorage = JSON.parse(localStorage.getItem('movies'))
+  if(moviesFromLocalStorage){
+    setWatchList(moviesFromLocalStorage)
+  }
+ },[]) 
+
   const addToWatchList = (movieObj) => {
     const updatedWatchList = [...watchList, movieObj]; // watchList.concat(movieObj)
     setWatchList(updatedWatchList);
+    localStorage.setItem('movies',JSON.stringify(updatedWatchList))
   }
 
   const removeFromWatchList = (movieObj)=>{
@@ -18,6 +26,7 @@ function Movies() {
       return movie.id != movieObj.id
      }) // return all those movies whose id is not equal to movieObj.id
     setWatchList(filteredMovies)
+    localStorage.setItem('movies',JSON.stringify(filteredMovies))
   }
   console.log("watchlist",watchList)
 
