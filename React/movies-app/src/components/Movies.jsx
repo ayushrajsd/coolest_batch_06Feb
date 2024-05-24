@@ -2,11 +2,16 @@ import React, { useState, useEffect } from "react";
 import Pagination from "./Pagination";
 import MovieCard from "./MovieCard";
 import axios from "axios";
+import paginationSlice from "../redux/paginationSlice";
+import { useDispatch, useSelector } from "react-redux";
+
+const paginationAction = paginationSlice.actions;
 
 function Movies() {
   const [movies, setMovies] = useState([]);
-  const [pageNo, setPageNo] = useState(1);
   const [watchList, setWatchList] = useState([]);
+  const {pageNo} = useSelector((state)=>state.pagination);
+  const dispatch = useDispatch();
 
  useEffect(()=>{
   const moviesFromLocalStorage = JSON.parse(localStorage.getItem('movies'))
@@ -42,15 +47,11 @@ function Movies() {
   }, [pageNo]);
 
   const handleNext = () => {
-    setPageNo(pageNo + 1);
+    dispatch(paginationAction.handleNext());
   };
 
   const handlePrevious = () => {
-    if (pageNo == 1) {
-      setPageNo(1);
-    } else {
-      setPageNo(pageNo - 1);
-    }
+    dispatch(paginationAction.handlePrev());
   };
 
   return (
