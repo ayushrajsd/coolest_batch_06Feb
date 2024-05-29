@@ -1,34 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Pagination from "./Pagination";
 import MovieCard from "./MovieCard";
 import axios from "axios";
+import { WatchListContext } from "../context/WatchListContext";
 
 function Movies() {
   const [movies, setMovies] = useState([]);
   const [pageNo, setPageNo] = useState(1);
-  const [watchList, setWatchList] = useState([]);
-
- useEffect(()=>{
-  const moviesFromLocalStorage = JSON.parse(localStorage.getItem('movies'))
-  if(moviesFromLocalStorage){
-    setWatchList(moviesFromLocalStorage)
-  }
- },[]) 
-
-  const addToWatchList = (movieObj) => {
-    const updatedWatchList = [...watchList, movieObj]; // watchList.concat(movieObj)
-    setWatchList(updatedWatchList);
-    localStorage.setItem('movies',JSON.stringify(updatedWatchList))
-  }
-
-  const removeFromWatchList = (movieObj)=>{
-    let filteredMovies = watchList.filter((movie)=> {
-      return movie.id != movieObj.id
-     }) // return all those movies whose id is not equal to movieObj.id
-    setWatchList(filteredMovies)
-    localStorage.setItem('movies',JSON.stringify(filteredMovies))
-  }
-  console.log("watchlist",watchList)
+  const {watchList, addToWatchList, removeFromWatchList} = useContext(WatchListContext);
 
   useEffect(() => {
     axios
@@ -60,7 +39,14 @@ function Movies() {
       </div>
       <div className="flex justify-evenly flex-wrap gap-8">
         {movies.map((movieObj) => {
-          return <MovieCard movieObj={movieObj} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList}/>;
+          return (
+            <MovieCard
+              movieObj={movieObj}
+              addToWatchList={addToWatchList}
+              watchList={watchList}
+              removeFromWatchList={removeFromWatchList}
+            />
+          );
         })}
       </div>
       <Pagination

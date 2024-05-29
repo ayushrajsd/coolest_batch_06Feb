@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import genereids from "../constants";
+import { WatchListContext } from "../context/WatchListContext";
+
 
 function WatchList() {
-  const [watchList, setWatchList] = useState([]);
+const { watchList, setWatchList } = useContext(WatchListContext);
   const [search, setSearch] = useState("");
   const [genreList, setGenreList] = useState([
     "All Genres",
