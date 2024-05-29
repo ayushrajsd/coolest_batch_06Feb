@@ -2,12 +2,38 @@ import React, { useState, useEffect, useContext } from "react";
 import Pagination from "./Pagination";
 import MovieCard from "./MovieCard";
 import axios from "axios";
-import { WatchListContext } from "../context/WatchListContext";
+import paginationSlice from "../redux/paginationSlice";
+import { useDispatch, useSelector } from "react-redux";
+
+const paginationAction = paginationSlice.actions;
 
 function Movies() {
   const [movies, setMovies] = useState([]);
-  const [pageNo, setPageNo] = useState(1);
-  const {watchList, addToWatchList, removeFromWatchList} = useContext(WatchListContext);
+  const [watchList, setWatchList] = useState([]);
+  const {pageNo} = useSelector((state)=>state.pagination);
+  const dispatch = useDispatch();
+
+ useEffect(()=>{
+  const moviesFromLocalStorage = JSON.parse(localStorage.getItem('movies'))
+  if(moviesFromLocalStorage){
+    setWatchList(moviesFromLocalStorage)
+  }
+ },[]) 
+
+  const addToWatchList = (movieObj) => {
+    const updatedWatchList = [...watchList, movieObj]; // watchList.concat(movieObj)
+    setWatchList(updatedWatchList);
+    localStorage.setItem('movies',JSON.stringify(updatedWatchList))
+  }
+
+  const removeFromWatchList = (movieObj)=>{
+    let filteredMovies = watchList.filter((movie)=> {
+      return movie.id != movieObj.id
+     }) // return all those movies whose id is not equal to movieObj.id
+    setWatchList(filteredMovies)
+    localStorage.setItem('movies',JSON.stringify(filteredMovies))
+  }
+  console.log("watchlist",watchList)
 
   useEffect(() => {
     axios
@@ -21,15 +47,11 @@ function Movies() {
   }, [pageNo]);
 
   const handleNext = () => {
-    setPageNo(pageNo + 1);
+    dispatch(paginationAction.handleNext());
   };
 
   const handlePrevious = () => {
-    if (pageNo == 1) {
-      setPageNo(1);
-    } else {
-      setPageNo(pageNo - 1);
-    }
+    dispatch(paginationAction.handlePrev());
   };
 
   return (
