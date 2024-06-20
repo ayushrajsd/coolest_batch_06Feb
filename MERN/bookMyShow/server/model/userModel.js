@@ -14,13 +14,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  isAdmin: {
-    type: Boolean,
-    default: false,
+  role: {
+    type: String,
+    enum: ["admin", "user", "partner"],
     required: true,
+    default: "user",
   },
 });
 
-const UserModel = mongoose.model("users", userSchema)
+const UserModel = mongoose.model("users", userSchema);
 
 module.exports = UserModel;

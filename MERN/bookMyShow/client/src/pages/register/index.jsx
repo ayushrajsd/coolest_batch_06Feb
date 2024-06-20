@@ -1,14 +1,29 @@
 import React from "react";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
 import { Link } from "react-router-dom";
+import { RegisterUser } from "../../api/users";
 
 function Register() {
+  const onFinish = async (values) => {
+     
+    try {
+      const response = await RegisterUser(values);
+      console.log(response);
+      if (response.success) {
+        message.success(response.message);
+      } else {
+        message.error(response.message);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <>
       <main className="App-header">
         <h1>Register to BookMyShow</h1>
         <section className="mw-500 text-center px-3">
-          <Form layout="vertical">
+          <Form layout="vertical" onFinish={onFinish}>
             <Form.Item
               label="Name"
               htmlFor="name"
@@ -26,7 +41,7 @@ function Register() {
               rules={[
                 { required: true, message: "Email is required" },
                 { type: "email", message: "Enter a valid Email" },
-            ]}
+              ]}
             >
               <Input type="text" placeholder="Enter your Email"></Input>
             </Form.Item>
@@ -35,10 +50,7 @@ function Register() {
               htmlFor="password"
               name="password"
               className="d-block"
-              rules={[
-                { required: true, message: "Password is required" },
-
-            ]}
+              rules={[{ required: true, message: "Password is required" }]}
             >
               <Input type="password" placeholder="Enter your Password"></Input>
             </Form.Item>
@@ -46,7 +58,7 @@ function Register() {
               <Button
                 type="primary"
                 block
-                htmltype="submit"
+                htmlType="submit"
                 style={{ fontSize: "1rem", fontWeight: "600" }}
               >
                 Register
@@ -54,7 +66,9 @@ function Register() {
             </Form.Item>
           </Form>
           <div>
-            <p>Already a user ? <Link to="/login">Login Now</Link></p>
+            <p>
+              Already a user ? <Link to="/login">Login Now</Link>
+            </p>
           </div>
         </section>
       </main>
