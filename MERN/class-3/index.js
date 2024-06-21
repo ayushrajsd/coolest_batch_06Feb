@@ -51,7 +51,7 @@ const productSchema = new mongoose.Schema({
       message: "Password and confirm password should be same",
     },
   },
-});
+},{timestamps: true});
 
 const ProductModel = mongoose.model("products", productSchema);
 
