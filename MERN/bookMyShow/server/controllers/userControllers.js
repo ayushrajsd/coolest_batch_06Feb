@@ -46,7 +46,7 @@ const login = async (req, res) => {
       success: true,
       message: "Login Successful",
       user: user,
-      data:token
+      data: token,
     });
   } catch (err) {
     console.log(err);
@@ -57,7 +57,18 @@ const login = async (req, res) => {
   }
 };
 
+const getCurrentUser = async (req, res) => {
+  const user = await User.findById(req.body.userId).select("-password");
+  console.log("found user", user);
+  res.send({
+    success: true,
+    data: user,
+    message: "You are authorized to go the protected route",
+  });
+};
+
 module.exports = {
   register,
   login,
+  getCurrentUser,
 };

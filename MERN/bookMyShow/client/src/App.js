@@ -1,22 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
-import Home from './pages/home';
-import Login from './pages/login';
-import Register from './pages/register';
-import { BrowserRouter, Routes, Route} from 'react-router-dom'
+import logo from "./logo.svg";
+import "./App.css";
+import Home from "./pages/home";
+import Login from "./pages/login";
+import Register from "./pages/register";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 function App() {
   return (
     <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-        </Routes>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Routes>
+        </BrowserRouter>
+      </Provider>
     </div>
-   
   );
 }
 
