@@ -1,21 +1,22 @@
-const express = require('express');
-require('dotenv').config(); // To access the environment variables
+const express = require("express");
+require("dotenv").config(); // To access the environment variables
 
-const connectDB = require('./config/dbconfig');
-const userRouter = require('./routes/userRoute');
+const connectDB = require("./config/dbconfig");
+const userRouter = require("./routes/userRoute");
+const movieRouter = require("./routes/movieRoute");
 
 const app = express();
 app.use(express.json());
 connectDB();
 
-
 /** Routes */
-app.use('/api/users', userRouter);
+app.use("/api/users", userRouter);
+app.use("/api/movies", movieRouter);
 
 app.use((req, res) => {
-    res.status(404).json({ message: "Route not found" });
-  })
+  res.status(404).json({ message: "Route not found" });
+});
 
-app.listen(8082, ()=>{
-    console.log('Server is running on port 8082')
-})
+app.listen(8082, () => {
+  console.log("Server is running on port 8082");
+});
