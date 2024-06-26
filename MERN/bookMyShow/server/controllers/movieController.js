@@ -31,7 +31,10 @@ const getAllMovies = async (req, res) => {
 
 const updateMovie = async (req, res) => {
   try {
-    const updatedMovie = await Movie.findByIdAndUpdate(req.body.id, req.body);
+    const updatedMovie = await Movie.findByIdAndUpdate(
+      req.body.movieId,
+      req.body
+    );
     res.send({
       success: true,
       message: "Movie updated successfully",
@@ -47,8 +50,8 @@ const updateMovie = async (req, res) => {
 
 const deleteMovie = async (req, res) => {
   try {
-    console.log("req.body", req.body.id);
-    await Movie.findByIdAndDelete(JSON.req.body.id);
+    console.log("req.body", req.body.movieId);
+    await Movie.findByIdAndDelete(req.body.movieId);
     res.send({
       success: true,
       message: "Movie deleted successfully",

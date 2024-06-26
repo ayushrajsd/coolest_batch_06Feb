@@ -64,7 +64,7 @@ const MovieForm = ({
           <Col span={24}>
             <Form.Item
               label="Movie Name"
-              name="name"
+              name="title"
               rules={[{ required: true, message: "Movie name is required!" }]}
             >
               <Input placeholder="Enter the movie name" />

@@ -33,11 +33,11 @@ export const updateMovie = async (movie) => {
 };
 
 // delete a movie
-export const deleteMovie = async (movieId) => {
+export const deleteMovie = async (payload) => {
   try {
     const response = await axiosInstance.post(
       "api/movies/delete-movie",
-      movieId
+      payload
     );
     return response.data;
   } catch (err) {

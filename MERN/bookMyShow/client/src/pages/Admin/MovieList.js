@@ -48,7 +48,7 @@ function MovieList() {
     },
     {
       title: "Movie Name",
-      dataIndex: "name",
+      dataIndex: "title",
     },
     {
       title: "Description",
