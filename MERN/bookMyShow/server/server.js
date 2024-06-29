@@ -4,6 +4,7 @@ require("dotenv").config(); // To access the environment variables
 const connectDB = require("./config/dbconfig");
 const userRouter = require("./routes/userRoute");
 const movieRouter = require("./routes/movieRoute");
+const theatreRouter = require("./routes/theatreRoute");
 
 const app = express();
 app.use(express.json());
@@ -12,6 +13,7 @@ connectDB();
 /** Routes */
 app.use("/api/users", userRouter);
 app.use("/api/movies", movieRouter);
+app.use("/api/theatres", theatreRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Route not found" });
