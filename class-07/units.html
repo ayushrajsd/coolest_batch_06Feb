@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Units</title>
+    <style>
+        html{
+            font-size: 22px;
+        }
+        .px-emaple{
+            font-size: 16px;
+            width:200px;
+            height:150px;
+            background-color: lightblue;
+        }
+        .container{
+            width:100%;
+            display: flex;
+        }
+        .sidebar{
+            width:25%;
+            background-color: lightcoral;
+            /* flex-grow:1; */
+            font-size:150%;
+            padding:10%;
+        }
+        .main-content{
+            width:75%;
+            /* flex-grow:3; */
+            background-color: lightgreen;
+        }
+        .em-container{
+            font-size:20px;
+        }
+        .text{
+            font-size:0.8em;
+        }
+        .box{
+            font-size:1.5em;
+            padding:1em;
+        }
+        .grandparent{
+            font-size:16px;
+        }
+        .parent{
+            font-size:1.5em;
+        }
+        .child{
+            font-size:1.5em;
+        }
+        .rem-example{
+            /* margin:1rem; */
+            padding:2rem;
+            background-color: lightgoldenrodyellow;
+            width:50vw;
+        }
+        .viewport{
+            width:80vw;
+            height:80vh;
+            background-color: lightcoral;
+        }
+    </style>
+</head>
+<body>
+    <div class="viewport">
+        content
+    </div>
+    <div class="px-emaple">Pixel Example</div>
+    <div class="container">
+        <div class="sidebar">Sidebar</div>
+        <div class="main-content">Main Content</div>
+    </div>
+    <div class="em-container">
+        <p class="text">this is a paragraph with standard text</p>
+        <div class="box">COntent inside box</div>
+    </div>
+    <div class="grandparent">
+        grandparent text
+        <div class="parent">
+            parent text
+            <div class="child">
+                child text
+            </div>
+        </div>
+    </div>
+    <div class="rem-example">REM EXample</div>
+    
+</body>
+</html>

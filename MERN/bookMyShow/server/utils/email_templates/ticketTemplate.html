@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book My Show</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+      .email-container {
+        max-width: 600px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .header h1 {
+        font-size: 24px;
+        color: #333;
+      }
+      .ticket-details {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .ticket-details h2 {
+        color: #333;
+        margin-bottom: 20px;
+        font-size: 22px;
+      }
+      .details {
+        list-style: none;
+        padding: 0;
+        width: 100%;
+      }
+      .details li {
+        margin: 10px 0;
+        color: #555;
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 0;
+        border-bottom: 1px solid #ddd;
+      }
+      .details li span {
+        font-weight: bold;
+      }
+      .footer {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 12px;
+        color: #999;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-container">
+      <div class="header">
+        <h1>Book My Show</h1>
+      </div>
+      <div class="ticket-details">
+        <h2>#{movie}</h2>
+        <ul class="details">
+          <li><span>Name:</span> <span>#{name}</span></li>
+          <li><span>Theatre:</span> <span>#{theatre}</span></li>
+          <li><span>Date:</span> <span>#{date}</span></li>
+          <li><span>Time:</span> <span>#{time}</span></li>
+          <li><span>Seats NOs:</span> <span>#{seats}</span></li>
+          <li><span>Amount:</span> <span>Rs. #{amount}</span></li>
+          <li><span>Transaction ID:</span> <span>#{transactionid}</span></li>
+        </ul>
+      </div>
+      <div class="footer">Enjoy your movie!</div>
+    </div>
+  </body>
+</html>
