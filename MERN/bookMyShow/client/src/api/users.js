@@ -24,6 +24,7 @@ export const GetCurrentUSer = async () => {
     return response.data;
   } catch (err) {
     console.log(err);
+    return err.response.data;
   }
 };
 

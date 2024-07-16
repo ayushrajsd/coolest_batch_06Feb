@@ -13,6 +13,11 @@ function Login() {
       if (response.success) {
         message.success(response.message);
         localStorage.setItem("token", response.data);
+        console.log(
+          "adding token to local storage",
+          localStorage.getItem("token")
+        );
+
         navigate("/");
       } else {
         message.error(response.message);
@@ -25,11 +30,6 @@ function Login() {
   const hello = (values) => {
     console.log("hello");
   };
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      navigate("/");
-    }
-  }, []);
   return (
     <>
       <main className="App-header">

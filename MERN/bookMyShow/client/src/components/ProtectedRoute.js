@@ -62,7 +62,7 @@ function ProtectedRoute({ children }) {
     try {
       dispatch(ShowLoading());
       const response = await GetCurrentUSer();
-      console.log(response);
+      console.log("response for current user in Protected route", response);
       if (!response.success) {
         message.error(response.message);
         navigate("/login");
